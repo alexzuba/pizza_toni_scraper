@@ -1,64 +1,20 @@
-#################################################################################################################
-###QUESTO PEZZO FUNZIONA, TI PERMETTE DI SCRIVERE L'HTML DENTRO A samplehtml.html , una volta fatto commentalo###
-#################################################################################################################
-# Necessary imports
-#import sys
-#import urllib.request
-#
-## Save a reference to the original
-## standard output
-#original_stdout = sys.stdout
-#
-## as an example, taken my article list
-## published link page and stored in local
-##with urllib.request.urlopen('https://www.geeksforgeeks.org/user/priyarajtt/contributions/') as webPageResponse:
-##with urllib.request.urlopen('https://dbuono.com/pizzeria-da-toni-pisa/prodotti/pizze/') as webPageResponse:
-#with urllib.request.urlopen('https://dbuono.com/pizzeria-da-toni-pisa/prodotti/pizze/?products-per-page=all') as webPageResponse:
-#    outputHtml = webPageResponse.read()
-#
-## Scraped contents are placed in 
-## samplehtml.html file and getting
-## used for next set of examples
-#with open('samplehtml.html', 'w') as f:
-#    
-#    # Here the  standard output is 
-#    # written to the file that we 
-#    # used above
-#    sys.stdout = f
-#    print(outputHtml)
-#    
-#    # Reset the standard output to its 
-#    # original value
-#    sys.stdout = original_stdout
-
 import requests
 from bs4 import BeautifulSoup
 import re
 
-#Tutorial: https://realpython.com/beautiful-soup-web-scraper-python/
+# Import smtplib for the actual sending function
+import smtplib
 
-#Codice per tutorial 
+# Import the email modules we'll need
+from email.mime.text import MIMEText
 
-#URL = "https://realpython.github.io/fake-jobs/"
-#page = requests.get(URL)
-#soup = BeautifulSoup(page.content, "html.parser")
-#results = soup.find(id="ResultsContainer")
-###print(results.prettify())
-#job_cards = results.find_all("div", class_="card-content")
-##for job_card in job_cards:
-##    print(job_card, end="\n" * 2)
-#for job_card in job_cards:
-#    title_element = job_card.find("h2", class_="title")
-#    company_element = job_card.find("h3", class_="company")
-#    location_element = job_card.find("p", class_="location")
-#    print(title_element.text)
-#    print(company_element.text)
-#    print(location_element.text)
-#    print()
-
+#Tutorial Beautiful Soup: https://realpython.com/beautiful-soup-web-scraper-python/
 
 
 #Codice per Toni
+
+GMAIL_USERNAME = "pizzeriatonitracker@gmail.com"
+GMAIL_APP_PASSWORD = "vvxcqbaxfvklzxik"
 
 URL = "https://dbuono.com/pizzeria-da-toni-pisa/prodotti/pizze/?products-per-page=all"
 page = requests.get(URL)
@@ -96,11 +52,13 @@ new_prices.close()
 #Confronto con i vecchi prezzi
 old_prices = open('old_prices.txt', 'r')
 new_prices = open('new_prices.txt', 'r')
+changed_prices = open('changed_prices.txt', 'w') #File in cui scrivo i prezzi cambiati, da inviare per mail
 
 old_prices_data = old_prices.readlines()
 new_prices_data  = new_prices.readlines()
 
 i = 0
+update = 0 #Se rimane a 0 non c'è bisogno di sovrascrivere old_prices, altrimenti devo sovrascriverlo con new_prices
 for line1, line2 in zip(old_prices_data, new_prices_data):
     i += 1
     if line1 == line2:
@@ -110,14 +68,51 @@ for line1, line2 in zip(old_prices_data, new_prices_data):
         print(f"Line {i}:")
         print(f"\tVecchio prezzo: {line1.strip()}")
         print(f"\tNuovo prezzo: {line2.strip()}")
+        changed_prices.write(line2)
+        update = 1
+
+old_prices.close()
+new_prices.close()
+changed_prices.close()
+
+#Sovrascrivo old_prices se new_prices /= old_prices 
+if update == 1:
+    i = 0
+    old_prices = open('old_prices.txt', 'w')
+    new_prices = open('new_prices.txt', 'r')
+    for line in new_prices:
+        i += 1
+        old_prices.write(line)
 
 old_prices.close()
 new_prices.close()
 
-#Fino a qua funziona, stampa tutte le pizze ed i relativi prezzi. Ora devi fare in modo che
-#Le pizze con i prezzi vengano salvate in un file NEW e confrontate con quelle che sono già dentro ad un file OLD
-#E poi mostri quali cambiano valore!! 
-
 
 #Mandare email:
 # https://stackoverflow.com/questions/6270782/how-to-send-an-email-with-python
+
+if update == 1: #Invio mail con il contenuto delle pizze cambiate di prezzo
+    changed_prices_path = 'changed_prices.txt'
+
+    with open(changed_prices_path, 'r', encoding='utf-8') as file:
+        lines = file.readlines()
+        file_content = ''.join(lines)
+
+#    print(file_content)
+
+    recipients = ["loll77@hotmail.it"]
+    msg = MIMEText(file_content)
+    msg["Subject"] = "Prezzo delle pizze di Toni cambiato!!"
+    msg["To"] = ", ".join(recipients)
+    msg["From"] = f"{GMAIL_USERNAME}@gmail.com"
+
+    smtp_server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+    smtp_server.login(GMAIL_USERNAME, GMAIL_APP_PASSWORD)
+    smtp_server.sendmail(msg["From"], recipients, msg.as_string())
+    smtp_server.quit()
+
+
+#Miglioramenti: Quando invia la mail, non mandare soltanto il nuovo prezzo, ma anche quello vecchio
+
+
+
