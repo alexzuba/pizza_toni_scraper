@@ -1,0 +1,51 @@
+Ai funghi: 7,50€
+Ai porcini: 8,00€
+Alla cipolla: 7,50€
+Patatosa: 7,50€
+Buon gustaio: 9,00€
+Pizza toni: 9,50€
+Pizza bufala: 8,00€
+Salsiccia: 7,50€
+Pizza al cotto: 7,50€
+Pizza al crudo: 8,50€
+Pizza alla nutella: 7,00€
+Pizza alpina: 9,50€
+Pizza arcobaleno: 8,00€
+Pizza boscaiola: 9,00€
+Pizza bresaola: 10,50€
+Pizza calabrese: 9,00€
+Pizza capricciosa: 9,00€
+Pizza cinque formaggi: 8,50€
+Pizza contadina: 8,50€
+Pizza del re: 11,50€
+Pizza delicata: 8,00€
+Pizza diavola: 8,50€
+Pizza don peppino: 9,50€
+Pizza donna maria: 9,50€
+Pizza ischitana: 9,00€
+Pizza la perla: 8,50€
+Pizza luculliana: 9,00€
+Pizza maialona: 8,50€
+Pizza margherita: 6,00€
+Pizza mari e monti: 11,00€
+Pizza marinara: 6,00€
+Pizza napoletana: 8,00€
+Pizza ninja: 9,00€
+Pizza norma: 8,50€
+Pizza ortolana: 9,00€
+Pizza parmense: 9,50€
+Pizza parmigiana: 8,50€
+Pizza pisana: 8,00€
+Pizza pizzaiola: 8,50€
+Pizza primavera: 10,00€
+Pizza quattro stagioni: 8,50€
+Pizza regina di bufala: 9,00€
+Pizza rucolona: 8,50€
+Pizza salamino: 7,50€
+Pizza siciliana: 8,00€
+Pizza spada: 10,50€
+Pizza tartufata: 9,00€
+Pizza tedesca: 8,50€
+Pizza tropea: 8,00€
+Pizza valdostana: 9,00€
+Pizza wurstel: 7,50€

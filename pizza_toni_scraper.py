@@ -72,17 +72,52 @@ pizze_all = results.find_all("ul", class_="woo-product-info")
 #for pizza in pizze_all:
 #    print(pizza, end="\n" * 2)
 
+#Scrivo i nuovi prezzi
+#new_prices = open('new_prices.txt', 'w')
+new_prices = open('new_prices.txt', 'w', encoding='utf-8')
+
 for pizza in pizze_all:
     title_pizza = pizza.find("li", class_="title")
     price_pizza = pizza.find("span", class_="price")
-    print("TITOLO:")
-#    print(title_pizza)
-    print(title_pizza.text)
-    print("PREZZO:")
-#    print(price_pizza)
-    print(price_pizza.text)
-    print()
+#    print("TITOLO:")
+#    print(title_pizza.text)
+#    print("PREZZO:")
+#    print(price_pizza.text)
+#    print()
+    #Scrivo i nuovi prezzi in new_prices.txt
+    new_prices.write(title_pizza.text)
+    #new_prices.write('\n')
+    new_prices.write(': ')
+    new_prices.write(price_pizza.text)
+    new_prices.write('\n')
+
+new_prices.close()
+
+#Confronto con i vecchi prezzi
+old_prices = open('old_prices.txt', 'r')
+new_prices = open('new_prices.txt', 'r')
+
+old_prices_data = old_prices.readlines()
+new_prices_data  = new_prices.readlines()
+
+i = 0
+for line1, line2 in zip(old_prices_data, new_prices_data):
+    i += 1
+    if line1 == line2:
+        #print(f"Line {i}: IDENTICAL")
+        i = i
+    else:
+        print(f"Line {i}:")
+        print(f"\tVecchio prezzo: {line1.strip()}")
+        print(f"\tNuovo prezzo: {line2.strip()}")
+
+old_prices.close()
+new_prices.close()
 
 #Fino a qua funziona, stampa tutte le pizze ed i relativi prezzi. Ora devi fare in modo che
 #Le pizze con i prezzi vengano salvate in un file NEW e confrontate con quelle che sono già dentro ad un file OLD
 #E poi mostri quali cambiano valore!! 
+
+
+#Mandare email:
+# https://stackoverflow.com/questions/6270782/how-to-send-an-email-with-python
