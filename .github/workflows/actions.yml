@@ -1,8 +1,16 @@
 name: run pizza_toni_scraper.py
 
+#on:
+#    schedule:
+#        - cron: '0 * * * *' #runs every hour
+
 on:
-    schedule:
-        - cron: '0 * * * *' #runs every hour
+  push:
+    branches:
+      - develop
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
     build:
