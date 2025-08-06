@@ -21,7 +21,8 @@ try:
     SOME_SECRET = os.environ["SOME_SECRET"]
 except KeyError:
     SOME_SECRET = "Token not available"
-GMAIL_APP_PASSWORD = "SOME_SECRET"
+    print("Token not available")
+GMAIL_APP_PASSWORD = SOME_SECRET
 
 URL = "https://dbuono.com/pizzeria-da-toni-pisa/prodotti/pizze/?products-per-page=all"
 page = requests.get(URL)
