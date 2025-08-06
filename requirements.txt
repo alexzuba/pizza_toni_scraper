@@ -1,6 +1,6 @@
 requests
 bs4
-BeautifulSoup
-smtplib
-email.mime.text 
-MIMEText
+#BeautifulSoup
+#smtplib
+#email.mime.text 
+#MIMEText
