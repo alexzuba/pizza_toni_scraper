@@ -9,7 +9,8 @@ on:
     branches:
       - develop
   schedule:
-    - cron: '0 * * * *'
+  #  - cron: '0 * * * *'
+    - cron: '0 9 * * *' #Ogni giorno alle 9 di mattina
   workflow_dispatch:
 
 jobs:
