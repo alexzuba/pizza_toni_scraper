@@ -1,3 +1,7 @@
+#Guarda questo video https://www.youtube.com/watch?v=PaGp7Vi5gfM&ab_channel=PatrickLoeber
+#Cosi puoi runnare questo codice su GitHub, inoltra elimina la pw per app da google e creane una nuova
+#usandola per questo script. In questo modo tutto sarà più sicuro 
+
 #Parsing HTML
 #Tutorial Beautiful Soup: https://realpython.com/beautiful-soup-web-scraper-python/
 import requests
@@ -6,13 +10,18 @@ from bs4 import BeautifulSoup
 # https://stackoverflow.com/questions/6270782/how-to-send-an-email-with-python
 import smtplib
 from email.mime.text import MIMEText
+import os
 
 #Debug constants
 PRINT_DEBUG = False #False -> Niente print di debug
 SEND_EMAIL = True #False -> Non mandare email
 #Email constants
 GMAIL_USERNAME = "pizzeriatonitracker@gmail.com"
-GMAIL_APP_PASSWORD = "vvxcqbaxfvklzxik"
+try:
+    SOME_SECRET = os.environ["SOME_SECRET"]
+except KeyError:
+    SOME_SECRET = "Token not available"
+GMAIL_APP_PASSWORD = "SOME_SECRET"
 
 URL = "https://dbuono.com/pizzeria-da-toni-pisa/prodotti/pizze/?products-per-page=all"
 page = requests.get(URL)
