@@ -1,0 +1,6 @@
+requests
+bs4
+BeautifulSoup
+smtplib
+email.mime.text 
+MIMEText
