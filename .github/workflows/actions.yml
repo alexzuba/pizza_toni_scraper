@@ -13,6 +13,9 @@ on:
     - cron: '0 9 * * *' #Ogni giorno alle 9 di mattina
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
     build:
         runs-on: ubuntu-latest
