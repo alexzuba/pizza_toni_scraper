@@ -35,3 +35,16 @@ jobs:
               env:
                     SOME_SECRET: ${{secrets.SOME_SECRET}}
               run: python pizza_toni_scraper.py
+
+            - name: Commit and push changes
+              run: |
+                git add old_prices.txt
+                if git diff --cached --quiet; then
+                  echo "No changes to commit."
+                else
+                  git commit -m "Aggiornato old_prices da workflow"
+                  git push
+              env:
+                # Serve un token per poter pushare
+                # GITHUB_TOKEN è fornito automaticamente da GitHub Actions
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
