@@ -36,6 +36,11 @@ jobs:
                     SOME_SECRET: ${{secrets.SOME_SECRET}}
               run: python pizza_toni_scraper.py
 
+            - name: Set up Git
+              run: |
+                git config user.name "github-actions"
+                git config user.email "github-actions@github.com"
+
             - name: Commit and push changes
               run: |
                 git add old_prices.txt
