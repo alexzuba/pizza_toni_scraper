@@ -45,6 +45,6 @@ jobs:
                   git commit -m "Aggiornato old_prices da workflow"
                   git push
               env:
-                # Serve un token per poter pushare
+                # Serve un token per poter pushare 
                 # GITHUB_TOKEN è fornito automaticamente da GitHub Actions
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
