@@ -38,7 +38,7 @@ jobs:
 
             - name: Commit and push changes
               run: |
-                git commit ../../old_prices.txt
+                git commit ../old_prices.txt
                 if git diff --cached --quiet; then
                   echo "No changes to commit."
                 else
