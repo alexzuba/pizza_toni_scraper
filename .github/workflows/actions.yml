@@ -10,7 +10,7 @@ on:
       - develop
   schedule:
   #  - cron: '0 * * * *'
-  #  - cron: '0 7 * * *' #Ogni giorno alle 9 di mattina (7 UTC)
+    - cron: '0 7 * * *' #Ogni giorno alle 9 di mattina (7 UTC)
   #  - cron: '*/5 * * * *' #ogni 5 minuti, debug
   workflow_dispatch:
 
