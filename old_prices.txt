@@ -1,7 +1,7 @@
 Ai funghi: 7,50€
 Ai porcini: 6,00€
 Alla cipolla: 7,50€
-Patatosa: 7,50€
+Patatosa: 6,50€
 Buon gustaio: 9,00€
 Pizza toni: 9,50€
 Pizza bufala: 8,00€
@@ -17,7 +17,7 @@ Pizza calabrese: 9,00€
 Pizza capricciosa: 9,00€
 Pizza cinque formaggi: 8,50€
 Pizza contadina: 8,50€
-Pizza del re: 11,50€
+Pizza del re: 8,50€
 Pizza delicata: 8,00€
 Pizza diavola: 8,50€
 Pizza don peppino: 9,50€

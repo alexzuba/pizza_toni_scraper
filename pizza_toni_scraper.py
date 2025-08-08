@@ -94,6 +94,17 @@ old_prices.close()
 new_prices.close()
 
 #Mando email
+try:
+    SECRET_EMAIL_1 = os.environ["SECRET_EMAIL_1"]
+except KeyError:
+    SECRET_EMAIL_1 = "Token not available"
+    print("Token not available")
+try:
+    SECRET_EMAIL_2 = os.environ["SECRET_EMAIL_2"]
+except KeyError:
+    SECRET_EMAIL_2 = "Token not available"
+    print("Token not available")
+
 if update == 1: #Invio mail con il contenuto delle pizze cambiate di prezzo
     changed_prices_path = 'changed_prices.txt'
 
@@ -105,7 +116,7 @@ if update == 1: #Invio mail con il contenuto delle pizze cambiate di prezzo
         print(file_content)
 
     if SEND_EMAIL == True:
-        recipients = ["loll77@hotmail.it", "alessandrozubani98@gmail.com"]
+        recipients = [SECRET_EMAIL_1, SECRET_EMAIL_2]
         msg = MIMEText(file_content)
         msg["Subject"] = "Prezzo delle pizze di Toni cambiato!!"
         msg["To"] = ", ".join(recipients)
